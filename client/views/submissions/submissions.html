@@ -1,0 +1,24 @@
+<template name="submissions">
+  <div class="container poll-holder">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Submissions</h1>
+      </div>
+    </div>
+    {{>_submissions}}
+  </div>
+</template>
+
+<template name="_submissions">
+  <div class="row">
+    <div class="col-md-12">
+      <ul>
+      {{#each submissions}}
+        <li>
+          <a href="{{url}}">{{url}}</a>
+        </li>
+      {{/each}}
+      </ul>
+    </div>
+  </div>
+</template>

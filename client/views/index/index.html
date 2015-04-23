@@ -1,0 +1,28 @@
+<template name="index">
+  <div class="container poll-holder">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Submit your URL</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+          <form>
+          <div class="input-group">
+            <input class="form-control" type="url" placeholder="Your URL here..." id="url" pattern="https?://.{5,10}" title="Enter a valid URL" required>
+           <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary">Submit</button>
+           </span>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+      </div>
+    </div>
+    {{>_submissions}}
+  </div>
+</template>
