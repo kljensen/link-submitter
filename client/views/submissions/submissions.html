@@ -15,7 +15,11 @@
       <ul>
       {{#each submissions}}
         <li>
-          <a href="{{url}}">{{url}}</a>
+          {{#if url}}
+            <a href="{{url}}">{{url}}</a>
+          {{else}}
+            {{text}}
+          {{/if}}
         </li>
       {{/each}}
       </ul>

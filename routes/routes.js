@@ -2,7 +2,7 @@ Router.configure({
   layoutTemplate: 'layout',
   data: function(){
     return {
-      submissions: Submissions.find()
+      submissions: Submissions.find(),
     }
   }
 })
@@ -22,17 +22,6 @@ Router.map(function() {
     name: 'index',
     fastRender: true
   });
-
-  this.route(pathPrefix + '/submissions', {
-    path: pathPrefix,
-    template: 'submissions',
-    data: function(){
-      return {
-        submissions: Submissions.find()
-      }
-    },
-  });
-
 
   this.route('notFound', {
     path: '*',
