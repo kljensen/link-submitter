@@ -2,7 +2,7 @@ Router.configure({
   layoutTemplate: 'layout',
   data: function(){
     return {
-      submissions: Submissions.find(),
+      submissions: Submissions.find({}, {sort: {submittedAt: -1}}),
     }
   }
 })

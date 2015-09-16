@@ -10,7 +10,7 @@
           <form>
                 {{#if isUrl}}
                   <div class="input-group">
-                    <input class="form-control" type="url" placeholder="Your URL here..." id="{{fieldName}}" pattern="https?://.{5,10}" title="Enter a valid URL" required>
+                    <input class="form-control" type="url" placeholder="Your URL here..." id="{{fieldName}}" pattern="https?://.{5,400}" title="Enter a valid URL" required>
                     <span class="input-group-btn">
                       {{> _button}}
                     </span>
