@@ -23,6 +23,18 @@ Router.map(function() {
     fastRender: true
   });
 
+  Router.route('/submissions/:submissionId', function () {
+    var submission = Submissions.findOne({_id: this.params.submissionId});
+    var content;
+    if (submission && submission.html) {
+      content = submission.html;
+    }else{
+      content = 'Not found!';
+    }
+    this.response.end(content);
+  }, {where: 'server'});
+
+
   this.route('notFound', {
     path: '*',
     where: 'server',

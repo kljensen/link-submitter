@@ -1,9 +1,8 @@
 Template._submissions.helpers({
-    isUrl: function(){
-    var ps = PollState.findOne();
-    if (ps && ps.fieldName === 'url') {
-      return true;
-    };
-    return false;
-  }
+  isUrl: function(){
+    return pollFieldNameIs('url');
+  },
+  isHTML: function(){
+    return pollFieldNameIs('html');
+  },
 })

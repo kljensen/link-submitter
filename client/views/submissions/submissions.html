@@ -18,7 +18,11 @@
           {{#if url}}
             <a href="{{url}}">{{url}}</a>
           {{else}}
-            {{text}}
+            {{#if html}}
+              <a href="/submissions/{{_id}}">Submission {{_id}}</a>
+            {{else}}
+              {{text}}
+            {{/if}}
           {{/if}}
         </li>
       {{/each}}

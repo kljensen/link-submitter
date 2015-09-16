@@ -10,6 +10,14 @@ Template.index.events({
   }
 });
 
+pollFieldNameIs = function (fieldName) {
+  var ps = PollState.findOne();
+  if (ps && ps.fieldName === fieldName) {
+    return true;
+  };
+  return false;
+}
+
 Template.index.helpers({
   pollstate: function(){
     return PollState.findOne();
@@ -29,10 +37,9 @@ Template.index.helpers({
     return null;
   },
   isUrl: function(){
-    var ps = PollState.findOne();
-    if (ps && ps.fieldName === 'url') {
-      return true;
-    };
-    return false;
+    return pollFieldNameIs('url');
+  },
+  isHTML: function(){
+    return pollFieldNameIs('html');
   }
 })
