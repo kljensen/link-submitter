@@ -39,6 +39,7 @@ Template.index.helpers({
   },
   hideSubmitButton: function(){
     var instance = Template.instance();
+    console.log('instance.wasSubmitted ==', instance.wasSubmitted);
     if (pollFieldNameIs('mc') && instance.wasSubmitted && instance.wasSubmitted.get() === true) {
       return true;
     }
