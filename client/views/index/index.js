@@ -14,9 +14,9 @@ pollFieldNameIs = function (fieldName) {
   var ps = PollState.findOne();
   if (ps && ps.fieldName === fieldName) {
     return true;
-  };
+  }
   return false;
-}
+};
 
 Template.index.helpers({
   pollstate: function(){
@@ -26,14 +26,14 @@ Template.index.helpers({
     var ps = PollState.findOne();
     if (ps) {
       return ps.prompt;
-    };
+    }
     return '...';
   },
   fieldName: function(){
     var ps = PollState.findOne();
     if (ps) {
       return ps.fieldName;
-    };
+    }
     return null;
   },
   isUrl: function(){
@@ -42,4 +42,4 @@ Template.index.helpers({
   isHTML: function(){
     return pollFieldNameIs('html');
   }
-})
+});

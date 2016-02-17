@@ -3,9 +3,9 @@ Router.configure({
   data: function(){
     return {
       submissions: Submissions.find({}, {sort: {submittedAt: -1}}),
-    }
+    };
   }
-})
+});
 
 
 Router.map(function() {

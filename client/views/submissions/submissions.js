@@ -5,4 +5,4 @@ Template._submissions.helpers({
   isHTML: function(){
     return pollFieldNameIs('html');
   },
-})
+});
