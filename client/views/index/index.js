@@ -1,7 +1,12 @@
+function getPollState(){
+  return PollState.findOne();
+}
+
 Template.index.events({
   'submit form': function(event, template){
     event.preventDefault();
-    var fieldName = PollState.findOne().fieldName;
+    var fieldName = getPollState().fieldName;
+    console.log(event.target[fieldName]);
     var value = event.target[fieldName].value;
     console.log(value);
     Meteor.call('addSubmission', value);
@@ -11,7 +16,7 @@ Template.index.events({
 });
 
 pollFieldNameIs = function (fieldName) {
-  var ps = PollState.findOne();
+  var ps = getPollState();
   if (ps && ps.fieldName === fieldName) {
     return true;
   }
@@ -20,17 +25,17 @@ pollFieldNameIs = function (fieldName) {
 
 Template.index.helpers({
   pollstate: function(){
-    return PollState.findOne();
+    return getPollState();
   },
   prompt: function(){
-    var ps = PollState.findOne();
+    var ps = getPollState();
     if (ps) {
       return ps.prompt;
     }
     return '...';
   },
   fieldName: function(){
-    var ps = PollState.findOne();
+    var ps = getPollState();
     if (ps) {
       return ps.fieldName;
     }
@@ -41,5 +46,14 @@ Template.index.helpers({
   },
   isHTML: function(){
     return pollFieldNameIs('html');
+  },
+  isMulitipleChoice: function(){
+    return pollFieldNameIs('mc');
+  },
+  choices: function(){
+    return getPollState().choices;
+  },
+  hasSubmissions: function(){
+    return (this.submissions.count() > 0);
   }
 });

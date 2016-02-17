@@ -9,7 +9,7 @@ Meteor.startup(
   }
 );
 
-resetPollState = function(fieldName, prompt){
+resetPollState = function(fieldName, prompt, options){
   if (typeof(fieldName) === 'undefined') {
     fieldName = 'url';
   }
@@ -17,9 +17,11 @@ resetPollState = function(fieldName, prompt){
     prompt = 'URL';
   }
   Submissions.remove({});
-  PollState.update({}, {
+  var pollState = {
     fieldName: fieldName,
     prompt: prompt
-  });
+  };
+  _.defaults(pollState, options || {});
+  PollState.update({}, pollState);
 
 };
