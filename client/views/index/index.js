@@ -1,4 +1,4 @@
-function getPollState(){
+getPollState = function(){
   return PollState.findOne();
 }
 

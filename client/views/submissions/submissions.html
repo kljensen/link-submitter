@@ -12,21 +12,30 @@
 <template name="_submissions">
   <div class="row">
     <div class="col-md-12">
-      <ul>
-      {{#each submissions}}
-        <li>
-          {{#if url}}
+      {{#if isMulitipleChoice}}
+        {{> multipleChoiceResults}}
+      {{else}}
+        <ul>
+          {{#each submissions}}
+          <li>
+            {{#if url}}
             <a href="{{url}}">{{url}}</a>
-          {{else}}
-            {{#if html}}
-              <a href="/submissions/{{_id}}">Submission {{_id}}</a>
             {{else}}
-              {{text}}
+            {{#if html}}
+            <a href="/submissions/{{_id}}">Submission {{_id}}</a>
+            {{else}}
+            {{text}}
             {{/if}}
-          {{/if}}
-        </li>
-      {{/each}}
-      </ul>
+            {{/if}}
+          </li>
+          {{/each}}
+        </ul>
+      {{/if}}
     </div>
+  </div>
+</template>
+
+<template name="multipleChoiceResults">
+  <div class="mutliple-choice-results">
   </div>
 </template>
