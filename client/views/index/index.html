@@ -17,21 +17,27 @@
                   </div>
                 {{else}}
                   {{#if isMulitipleChoice}}
-                    <div class="form-group">
-                      {{#each choices}}
-                        <label>
-                          <input type="radio" name="optionsRadios" id="{{fieldName}}" value="{{.}}">
-                          {{.}}
-                        </label>
-                      {{/each}}
-                    </div>
+                    {{#unless wasSubmitted}}
+                      <div class="form-group">
+                        {{#each choices}}
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="optionsRadios" id="{{fieldName}}" value="{{.}}">
+                              {{.}}
+                            </label>                            
+                          </div>
+                        {{/each}}
+                      </div>
+                    {{/unless}}
                   {{else}}
                     <div class="form-group">
                       <textarea class="form-control" placeholder="Your {{prompt}} here..." id="{{fieldName}}" title="Enter a valid {{prompt}}" rows="5" required></textarea><br>
                     </div>
                   {{/if}}
                 {{/if}}
-                {{> _button}}
+                {{#unless hideSubmitButton}}
+                  {{> _button}}
+                {{/unless}}
 
         </form>
       </div>

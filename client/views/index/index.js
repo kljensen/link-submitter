@@ -11,6 +11,8 @@ Template.index.events({
     console.log(value);
     Meteor.call('addSubmission', value);
     event.target[fieldName].value = "";
+    template.wasSubmitted.set(true);
+    console.log('setting as submitted');
     return false;
   }
 });
@@ -23,7 +25,25 @@ pollFieldNameIs = function (fieldName) {
   return false;
 };
 
+// Template.index.onCreated(function(){
+//   this.data.wasSubmitted = new ReactiveVar(false);
+// });
+
 Template.index.helpers({
+  wasSubmitted: function(){
+    var instance = Template.instance();
+    if (typeof(instance.wasSubmitted) === 'undefined') {
+      instance.wasSubmitted = new ReactiveVar(false);
+    }
+    return Template.instance().wasSubmitted.get();
+  },
+  hideSubmitButton: function(){
+    var instance = Template.instance();
+    if (pollFieldNameIs('mc') && instance.wasSubmitted && instance.wasSubmitted.get() === true) {
+      return true;
+    }
+    return false;
+  },
   pollstate: function(){
     return getPollState();
   },
@@ -55,5 +75,8 @@ Template.index.helpers({
   },
   hasSubmissions: function(){
     return (this.submissions.count() > 0);
+  },
+  hideSubmissions: function(){
+    return getPollState().hideSubmissions;
   }
 });

@@ -10,3 +10,4 @@ nemo64:bootstrap
 less
 iron:router
 mfpierre:chartist-js
+reactive-var
