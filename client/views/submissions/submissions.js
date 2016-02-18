@@ -7,29 +7,29 @@ Template._submissions.helpers({
   },
   isMulitipleChoice: function(){
     return pollFieldNameIs('mc');
-  },
-  multipleChoiceLabels: function(){
-    var labels = getPollState().choices;
-    return labels;
-  },
-  multipleChoiceSeries: function(){
+  }
+});
+
+Template.multipleChoiceResults.helpers({
+  data: function(){
     var submissions = Submissions.find().fetch();
     var counts = _.countBy(submissions, 'mc');
     var labels = getPollState().choices;
-    var series = _.map(labels, function(v){return counts[v] || 0;});
-    return series;
-  },
-});
+    var data = [];
+    var sum = 0;
 
-Template.multipleChoiceResults.onRendered(function(){
-  new Chartist.Bar('.mutliple-choice-results', {
-      labels: this.data.labels,
-      series: [this.data.series]
-      }, {
-        scaleMinSpace: 20,
-        horizontalBars: true,
-        onlyInteger: true,
-        high: _.max(this.data.series),
-        low: 0,
-    });
+    for (var i = 0; i < labels.length; i++) {
+      var l = labels[i];
+      var d = {
+        key: l,
+        value: counts[l] || 0
+      };
+      data.push(d);
+      sum += d.value;
+    }
+    for (i = 0; i < data.length; i++) {
+      data[i].value *= Math.round(100/sum);
+    }
+    return data;
+  }
 });

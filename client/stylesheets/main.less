@@ -12,11 +12,18 @@ li{
 
 
 .ct-series-a line{
-	stroke-width: 30px;
+	// stroke-width: 30px;
 	stroke: #428bca !important;
 	fill:  #428bca !important;
 }
 
 .ct-vertical{
 	font-weight: bold;
+}
+
+
+@media only screen and (max-width: 900px) {
+	.charts__chart[data-percent]::after {
+		margin-left: 1em;
+	}
 }
