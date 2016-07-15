@@ -1,6 +1,6 @@
 getPollState = function(){
   return PollState.findOne();
-}
+};
 
 Template.index.events({
   'submit form': function(event, template){
@@ -29,14 +29,17 @@ pollFieldNameIs = function (fieldName) {
 //   this.data.wasSubmitted = new ReactiveVar(false);
 // });
 
+var wasSubmitted = function(){
+  var instance = Template.instance();
+  if (typeof(instance.wasSubmitted) === 'undefined') {
+    instance.wasSubmitted = new ReactiveVar(false);
+  }
+  console.log('trying to get wasSubmitted');
+  return Template.instance().wasSubmitted.get();
+};
+
 Template.index.helpers({
-  wasSubmitted: function(){
-    var instance = Template.instance();
-    if (typeof(instance.wasSubmitted) === 'undefined') {
-      instance.wasSubmitted = new ReactiveVar(false);
-    }
-    return Template.instance().wasSubmitted.get();
-  },
+  wasSubmitted: wasSubmitted,
   hideSubmitButton: function(){
     var instance = Template.instance();
     console.log('instance.wasSubmitted ==', instance.wasSubmitted);
@@ -78,6 +81,14 @@ Template.index.helpers({
     return (this.submissions.count() > 0);
   },
   hideSubmissions: function(){
-    return getPollState().hideSubmissions;
+    var ps = getPollState();
+    if (ps && _.has(ps, 'hideSubmissions')){
+      return ps.hideSubmissions;
+    }
+    if(pollFieldNameIs('mc') && !wasSubmitted()){
+      return true;
+    }
+
+    return false;
   }
 });
