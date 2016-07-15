@@ -38,7 +38,8 @@
 <template name="multipleChoiceResults">
   <div class="charts">
     {{#each data}}
-      <div class="charts__chart chart--lg" data-percent="{{key}}: {{value}}%" style="width: {{value}}%"></div><!-- /.charts__chart -->
+      <span>{{key}}</span>
+      <div class="charts__chart chart--lg"  style="width: {{value}}%"></div><!-- /.charts__chart -->
     {{/each}}
   </div><!-- /.charts -->
 </template>
