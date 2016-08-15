@@ -12,6 +12,7 @@ Template.index.events({
     Meteor.call('addSubmission', value);
     event.target[fieldName].value = "";
     template.wasSubmitted.set(true);
+    Template.instance().wasSubmitted.set(true);
     console.log('setting as submitted');
     return false;
   }
@@ -88,6 +89,8 @@ Template.index.helpers({
     if(pollFieldNameIs('mc') && !wasSubmitted()){
       return true;
     }
+    console.log('pollFieldName =', pollFieldNameIs('mc'));
+    console.log('wasSubmitted =', wasSubmitted());
 
     return false;
   }

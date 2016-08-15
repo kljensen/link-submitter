@@ -46,6 +46,7 @@
         </form>
       </div>
     </div>
+	
     {{#unless hideSubmissions}}
       {{#if hasSubmissions}}
         <div class="row">
@@ -53,7 +54,13 @@
             <hr>
           </div>
         </div>
-        {{>_submissions}}
+        {{#if isMultipleChoice}}
+          {{#if wasSubmitted}}
+             {{>_submissions}}
+          {{/if}}
+        {{else}}
+          {{>_submissions}}
+        {{/if}}
       {{/if}}
     {{/unless}}
   </div>
